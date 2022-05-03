@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { Message } from 'semantic-ui-react'
 
 import apiClient from "../http-client";
 
@@ -24,9 +25,8 @@ const Videos = () => {
       <nav>
         <Link to="create">Criar</Link>
       </nav>
-
+      {items.length === 0 && <Message header="Não encontramos nenhum item" data-testid="emptyList" />}
       {items && <ListVideos items={items} />}
-
     </div>
   )
 }

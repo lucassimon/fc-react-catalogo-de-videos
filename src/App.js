@@ -8,9 +8,11 @@ import Videos from "./videos";
 import Video from "./videos/Detail";
 import CreateVideo from "./videos/Create"
 
+
 import Categories from "./categories";
 import Category from "./categories/Detail";
 import CreateCategory from "./categories/Create"
+
 
 import Genres from "./genres";
 import Genre from "./genres/Detail";
