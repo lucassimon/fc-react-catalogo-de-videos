@@ -11,12 +11,12 @@ import ListCastMembers from "./List";
 const CastMembers = () => {
   const [items, setItems] = useState([]);
 
-  React.useEffect(() => {
-    const getItems = async () => {
-      const response = await apiClient.get("/v1/castmembers/")
-      setItems(response.data.results);
-    }
+  const getItems = async () => {
+    const response = await apiClient.get("/v1/castmembers/")
+    setItems(response.data.results);
+  }
 
+  React.useEffect(() => {
     getItems()
   }, []);
 

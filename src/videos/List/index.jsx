@@ -10,6 +10,7 @@ const ListVideos = ({ items }) => (
       <Table.Row>
         <Table.HeaderCell>Titulo</Table.HeaderCell>
         <Table.HeaderCell>Status</Table.HeaderCell>
+        <Table.HeaderCell>Is Deleted?</Table.HeaderCell>
         <Table.HeaderCell>Duration</Table.HeaderCell>
         <Table.HeaderCell>Thumb</Table.HeaderCell>
         <Table.HeaderCell>Trailer</Table.HeaderCell>

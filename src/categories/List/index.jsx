@@ -10,6 +10,7 @@ const ListCategories = ({ items }) => (
       <Table.Row>
         <Table.HeaderCell>Titulo</Table.HeaderCell>
         <Table.HeaderCell>Description</Table.HeaderCell>
+        <Table.HeaderCell>Is Deleted?</Table.HeaderCell>
         <Table.HeaderCell>Actions</Table.HeaderCell>
       </Table.Row>
     </Table.Header>

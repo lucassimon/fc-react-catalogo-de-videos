@@ -9,13 +9,12 @@ import ListCategories from "./List";
 
 const Categories = () => {
   const [items, setItems] = useState([]);
+  const getItems = async () => {
+    const response = await apiClient.get("/v1/categories/")
+    setItems(response.data.results);
+  }
 
   React.useEffect(() => {
-    async function getItems() {
-      const response = await apiClient.get("/v1/categories/")
-      setItems(response.data.results);
-    }
-
     getItems()
   }, []);
 

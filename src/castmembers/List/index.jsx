@@ -9,6 +9,8 @@ const ListCastMembers = ({ items }) => (
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Kind</Table.HeaderCell>
+        <Table.HeaderCell>Is Deleted</Table.HeaderCell>
         <Table.HeaderCell>Actions</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
