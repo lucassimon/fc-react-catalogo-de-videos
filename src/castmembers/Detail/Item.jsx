@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Table } from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
 
 import apiClient from "../../http-client";
 
@@ -19,15 +19,14 @@ const Item = ({ item }) => {
   }
 
   return (
-    <Table.Row>
-      <Table.Cell>{item.name}</Table.Cell>
-      <Table.Cell>{item.kind === 0 ? "Director" : "Ator"}</Table.Cell>
-      <Table.Cell>{item.is_deleted ? "sim" : "não"}</Table.Cell>
-      <Table.Cell>
-        <Link to={`/castmembers/${item.id}/`}>Detalhes</Link> {' '}
+    <div>
+      <nav>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
-      </Table.Cell>
-    </Table.Row>
+      </nav>
+      <h3>Name: {item.name}</h3>
+      <p>Kind: {item.kind === 0 ? "Director" : "Ator"}</p>
+      <p>IsDeleted: {item.is_deleted ? "sim" : "não"}</p>
+    </div>
   )
 }
 
