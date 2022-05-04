@@ -9,12 +9,17 @@ import ListGenres from "./List";
 
 const Genres = () => {
   const [items, setItems] = useState([]);
+  const [pageId, setPageId] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+
+  const getItems = async (page = 1) => {
+    const response = await apiClient.get(`/v1/genres/?page=${page}`)
+    setTotalPages(response.data.total_pages)
+    setPageId(response.data.current_page_number)
+    setItems(response.data.results);
+  }
 
   React.useEffect(() => {
-    async function getItems() {
-      const response = await apiClient.get("/v1/genres/")
-      setItems(response.data.results);
-    }
 
     getItems()
   }, []);
@@ -26,7 +31,7 @@ const Genres = () => {
         <Link to="create">Criar</Link>
       </nav>
       {items.length === 0 && <Message header="Não encontramos nenhum item" data-testid="emptyList" />}
-      {items.length > 0 && <ListGenres items={items} /> }
+      {items.length > 0 && <ListGenres items={items} pageId={pageId} totalPages={totalPages} getItems={getItems} /> }
     </div>
   )
 }

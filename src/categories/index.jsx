@@ -9,8 +9,13 @@ import ListCategories from "./List";
 
 const Categories = () => {
   const [items, setItems] = useState([]);
-  const getItems = async () => {
-    const response = await apiClient.get("/v1/categories/")
+  const [pageId, setPageId] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+
+  const getItems = async (page = 1) => {
+    const response = await apiClient.get(`/v1/categories/?page=${page}`)
+    setTotalPages(response.data.total_pages)
+    setPageId(response.data.current_page_number)
     setItems(response.data.results);
   }
 
@@ -25,7 +30,7 @@ const Categories = () => {
         <Link to="create">Criar</Link>
       </nav>
       {items.length === 0 && <Message header="Não encontramos nenhum item" data-testid="emptyList" />}
-      {items.length > 0 && <ListCategories items={items} />}
+      {items.length > 0 && <ListCategories items={items} pageId={pageId} totalPages={totalPages} getItems={getItems} />}
     </div>
   )
 }

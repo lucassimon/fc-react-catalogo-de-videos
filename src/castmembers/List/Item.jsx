@@ -18,13 +18,15 @@ const Item = ({ item }) => {
     await deleteItem(id)
   }
 
+  const handleDetail = () => navigate(`/castmembers/${item.id}`);
+
   return (
     <Table.Row>
       <Table.Cell>{item.name}</Table.Cell>
       <Table.Cell>{item.kind === 0 ? "Director" : "Ator"}</Table.Cell>
       <Table.Cell>{item.is_deleted ? "sim" : "não"}</Table.Cell>
       <Table.Cell>
-        <Link to={`/castmembers/${item.id}/`}>Detalhes</Link> {' '}
+        <Button color='primary' onClick={handleDetail}>Detalhes</Button>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
       </Table.Cell>
     </Table.Row>

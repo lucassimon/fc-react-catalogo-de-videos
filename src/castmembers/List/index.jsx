@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { Table } from 'semantic-ui-react'
+import { Pagination, Table  } from 'semantic-ui-react'
 
 import Item from './Item'
 
-const ListCastMembers = ({ items }) => (
+
+
+const ListCastMembers = ({ items, pageId, totalPages, getItems }) => (
   <Table celled>
     <Table.Header>
       <Table.Row>
@@ -18,7 +20,15 @@ const ListCastMembers = ({ items }) => (
     {(items || []).map((item) => (<Item key={item.id} item={item} />))}
     </Table.Body>
     <Table.Footer>
-
+      <Table.Row>
+        <Table.HeaderCell colSpan='4'>
+            <Pagination
+              activePage={pageId}
+              onPageChange={(e, { activePage }) => getItems(activePage)}
+              totalPages={totalPages}
+            />
+        </Table.HeaderCell>
+      </Table.Row>
     </Table.Footer>
   </Table>
 )

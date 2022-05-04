@@ -9,13 +9,17 @@ import ListVideos from "./List";
 
 const Videos = () => {
   const [items, setItems] = useState([]);
+  const [pageId, setPageId] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+
+  const getItems = async (page = 1) => {
+    const response = await apiClient.get(`/v1/videos/?page=${page}`)
+    setTotalPages(response.data.total_pages)
+    setPageId(response.data.current_page_number)
+    setItems(response.data.results);
+  }
 
   React.useEffect(() => {
-    async function getItems() {
-      const response = await apiClient.get("/v1/videos/")
-      setItems(response.data.results);
-    }
-
     getItems()
   }, []);
 
@@ -26,7 +30,7 @@ const Videos = () => {
         <Link to="create">Criar</Link>
       </nav>
       {items.length === 0 && <Message header="Não encontramos nenhum item" data-testid="emptyList" />}
-      {items && <ListVideos items={items} />}
+      {items && <ListVideos items={items} pageId={pageId} totalPages={totalPages} getItems={getItems} />}
     </div>
   )
 }

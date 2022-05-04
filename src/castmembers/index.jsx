@@ -10,9 +10,13 @@ import ListCastMembers from "./List";
 
 const CastMembers = () => {
   const [items, setItems] = useState([]);
+  const [pageId, setPageId] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
 
-  const getItems = async () => {
-    const response = await apiClient.get("/v1/castmembers/")
+  const getItems = async (page = 1) => {
+    const response = await apiClient.get(`/v1/castmembers/?page=${page}`)
+    setTotalPages(response.data.total_pages)
+    setPageId(response.data.current_page_number)
     setItems(response.data.results);
   }
 
@@ -27,7 +31,7 @@ const CastMembers = () => {
         <Link to="create">Criar</Link>
       </nav>
       {items.length === 0 && <Message header="Não encontramos nenhum item" data-testid="emptyList" />}
-      {items.length > 0 && <ListCastMembers items={items} />}
+      {items.length > 0 && <ListCastMembers items={items} pageId={pageId} totalPages={totalPages} getItems={getItems} />}
     </div>
   )
 }
