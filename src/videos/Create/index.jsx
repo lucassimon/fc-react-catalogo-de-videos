@@ -55,23 +55,20 @@ const CreateVideo = () => {
   const onSubmit = data => createVideo(data)
 
   const getCategories = async () => {
-    const response = await apiClient.get("/v1/categories/")
-    setCategories(response.data.results);
+    const response = await apiClient.get("/v1/categories/?status=1&is_deleted=0&no_page=1")
+    setCategories(response.data);
   }
 
   const getGenres = async () => {
-    const response = await apiClient.get("/v1/genres/")
-    setGenres(response.data.results);
+    const response = await apiClient.get("/v1/genres/?status=1&is_deleted=0&no_page=1")
+    setGenres(response.data);
   }
-
 
   React.useEffect(() => {
     getCategories()
     getGenres()
   }, []);
 
-
-  console.log(errors)
   return (
     <div>
       <h2>Criar Videos</h2>

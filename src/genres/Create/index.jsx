@@ -45,8 +45,8 @@ const CreateGenre = () => {
   const onSubmit = data => createGenre(data)
 
   const getCategories = async () => {
-    const response = await apiClient.get("/v1/categories/")
-    setCategories(response.data.results);
+    const response = await apiClient.get("/v1/categories/?status=1&is_deleted=0&no_page=1")
+    setCategories(response.data);
   }
 
   React.useEffect(() => {
