@@ -66,7 +66,7 @@ const App = () => (
 
           <Route path="castmembers" element={<CastMembers />} />
           <Route path="castmembers/create" element={<CreateCastMember />} />
-          <Route path="castmembers/:genreId" element={<CastMember />} />
+          <Route path="castmembers/:castMemberId" element={<CastMember />} />
         </Route>
         <Route
           path="*"
