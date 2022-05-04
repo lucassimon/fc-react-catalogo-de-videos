@@ -18,6 +18,7 @@ const Item = ({ item }) => {
   }
 
   const handleDetail = () => navigate(`/videos/${item.id}`);
+  const handleUpdate = () => navigate(`/videos/${item.id}/edit`);
 
   return (
     <Table.Row>
@@ -30,6 +31,7 @@ const Item = ({ item }) => {
       <Table.Cell>{item.video_file}</Table.Cell>
       <Table.Cell>
         <Button color='primary' onClick={handleDetail}>Detalhes</Button>
+        <Button color='black' onClick={handleUpdate}>Editar</Button>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
       </Table.Cell>
     </Table.Row>

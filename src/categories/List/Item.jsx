@@ -19,14 +19,17 @@ const Item = ({ item }) => {
   }
 
   const handleDetail = () => navigate(`/categories/${item.id}`);
+  const handleUpdate = () => navigate(`/categories/${item.id}/edit`);
 
   return (
     <Table.Row>
       <Table.Cell>{item.title}</Table.Cell>
       <Table.Cell>{item.description}</Table.Cell>
+      <Table.Cell>{item.status === 1 ? "ativo" : "inativo"}</Table.Cell>
       <Table.Cell>{item.is_deleted ? "sim" : "não"}</Table.Cell>
       <Table.Cell>
         <Button color='primary' onClick={handleDetail}>Detalhes</Button>
+        <Button color='black' onClick={handleUpdate}>Editar</Button>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
       </Table.Cell>
     </Table.Row>

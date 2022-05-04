@@ -114,6 +114,16 @@ const CreateVideo = () => {
           <Message warning content={errors.categories?.message} />
         </Form.Field>
 
+        {/* <Form.Field>
+        {(categories || []).map((item) => (
+          <label>
+            <input key={item.id} type="checkbox" value={item.id}  {...register("categories")} />{' '}
+            {item.title}
+          </label>
+        ))}
+        <Message warning content={errors.categories?.message} />
+        </Form.Field> */}
+
         <Form.Field>
           <label>Genres</label>
           <select {...register("genres")}>
@@ -123,6 +133,16 @@ const CreateVideo = () => {
           </select >
           <Message warning content={errors.genres?.message} />
         </Form.Field>
+
+        {/* <Form.Field>
+        {(genres || []).map((item) => (
+          <label>
+            <input key={item.id} type="checkbox" value={item.id}  {...register("genres")} />{' '}
+            {item.title}
+          </label>
+        ))}
+        <Message warning content={errors.genres?.message} />
+        </Form.Field> */}
 
         <Form.Field>
           <label>thumb_file</label>

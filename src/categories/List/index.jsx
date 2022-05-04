@@ -10,6 +10,7 @@ const ListCategories = ({ items, pageId, totalPages, getItems }) => (
       <Table.Row>
         <Table.HeaderCell>Titulo</Table.HeaderCell>
         <Table.HeaderCell>Description</Table.HeaderCell>
+        <Table.HeaderCell>Status</Table.HeaderCell>
         <Table.HeaderCell>Is Deleted?</Table.HeaderCell>
         <Table.HeaderCell>Actions</Table.HeaderCell>
       </Table.Row>
@@ -19,7 +20,7 @@ const ListCategories = ({ items, pageId, totalPages, getItems }) => (
     </Table.Body>
     <Table.Footer>
       <Table.Row>
-        <Table.HeaderCell colSpan='4'>
+        <Table.HeaderCell colSpan='5'>
             <Pagination
               activePage={pageId}
               onPageChange={(e, { activePage }) => getItems(activePage)}

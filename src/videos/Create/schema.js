@@ -16,6 +16,8 @@ const schema = yup.object({
   rating: yup.string().max(1).required(),
   categories: yup.string().required(),
   genres: yup.string().required(),
+  // categories: yup.array().of(yup.string()).min(1).required(),
+  // genres: yup.array().of(yup.string()).min(1).required(),
   thumb_file: yup.mixed().nullable().notRequired().test( "fileSize", "File is too large",  value => {
     if (value && value.length > 0) {
       return value && value[0].size <= 2000000000

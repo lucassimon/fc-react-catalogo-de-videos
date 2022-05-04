@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Message, Form } from 'semantic-ui-react'
 
 import apiClient from "../../http-client";
+import { appendToArray } from "../utils"
 import schema from './schema'
 
 
@@ -18,24 +19,10 @@ const CreateGenre = () => {
     resolver: yupResolver(schema)
   });
 
-  const appendToArray = async (data) => {
-    let categories = []
-    categories.push(data["categories"])
-    data["categories"] = categories
-
-    let new_data = {
-      "title": data.title,
-      "categories": categories
-    }
-
-    return new_data
-  }
-
   const createGenre = async (data) => {
-    const new_data = await appendToArray(data)
     setLoading(true);
     try {
-      await apiClient.post("/v1/genres/", new_data)
+      await apiClient.post("/v1/genres/", data)
       setSuccess(true)
     } catch (error) {
       setError(true)
@@ -67,12 +54,12 @@ const CreateGenre = () => {
 
         <Form.Field>
           <label>Categories</label>
-          <select {...register("categories")}>
+          <select multiple={true} {...register("categories")}>
             {(categories || []).map((item) => (
               <option key={item.id} value={item.id}>{item.title}</option>
             ))}
           </select >
-          <Message warning content={errors.description?.message} />
+          <Message warning content={errors.categories?.message} />
         </Form.Field>
 
         <Message success header='Category saved' />
