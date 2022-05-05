@@ -29,7 +29,7 @@ const Item = ({ item }) => {
       <Table.Cell>{item.status === 1 ? "ativo" : "inativo"}</Table.Cell>
       <Table.Cell>{item.is_deleted ? "sim" : "não"}</Table.Cell>
       <Table.Cell>
-        <Button color='primary' onClick={handleDetail}>Detalhes</Button>
+        <Button color='purple' onClick={handleDetail}>Detalhes</Button>
         <Button color='black' onClick={handleUpdate}>Editar</Button>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
       </Table.Cell>
