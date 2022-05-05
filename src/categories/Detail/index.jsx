@@ -44,7 +44,7 @@ const Category = () => {
         </Message.Content>
       </Message>)
       }
-      {item && <Item item={item} />}
+      {success && item && <Item item={item} />}
     </div>
   )
 }
