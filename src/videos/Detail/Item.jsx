@@ -17,14 +17,18 @@ const Item = ({ item }) => {
   const clickDeleteItem = async (id) => {
     await deleteItem(id)
   }
+  const handleUpdate = () => navigate(`/videos/${item.id}/edit`);
+  const handleUpload = () => navigate(`/videos/${item.id}/upload`);
 
   return (
     <div>
       <nav>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
+        <Button color='black' onClick={handleUpdate}>Editar</Button>
+        <Button color='teal' onClick={handleUpload}>Upload</Button>
       </nav>
       <h3>Title: {item.title}</h3>
-      <p>Description: {item.description === "" ? "não informado": item.description}</p>
+      <p>Description: {item.description === null ? "não informado": item.description}</p>
       <p>Categories: {item.categories}</p>
       <p>Genres: {item.genres}</p>
       <p>Status: {item.status === 0 ? "Inativo" : "Ativo"}</p>

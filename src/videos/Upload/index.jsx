@@ -77,8 +77,8 @@ const UploadVideo = () => {
     <div>
       <h2>Upload Videos</h2>
 
-      {error && <Message error header="Ocorreu um erro" data-testid="errorDetail" />}
-      {loading && (<Message icon>
+      {!success && error && <Message error header="Ocorreu um erro" data-testid="errorDetail" />}
+      {item === null && loading && (<Message icon>
         <Icon name='circle notched' loading />
         <Message.Content>
           <Message.Header>Just one second</Message.Header>
@@ -86,7 +86,6 @@ const UploadVideo = () => {
         </Message.Content>
       </Message>)
       }
-      {item === null && <p>Item nulo</p>}
 
       <Form onSubmit={handleSubmit(onSubmit)} loading={loadingForm} error={errorForm} warning={!!errors} success={successForm}>
 
