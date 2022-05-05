@@ -18,10 +18,13 @@ const Item = ({ item }) => {
     await deleteItem(id)
   }
 
+  const handleUpdate = () => navigate(`/castmembers/${item.id}/edit`);
+
   return (
     <div>
       <nav>
         <Button color='red' onClick={() => clickDeleteItem(item.id)}>Delete</Button>
+        <Button color='black' onClick={handleUpdate}>Editar</Button>
       </nav>
       <h3>Name: {item.name}</h3>
       <p>Kind: {item.kind === 0 ? "Director" : "Ator"}</p>
