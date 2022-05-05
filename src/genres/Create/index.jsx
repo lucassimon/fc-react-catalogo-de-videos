@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Message, Form } from 'semantic-ui-react'
 
 import apiClient from "../../http-client";
-import { appendToArray } from "../utils"
 import schema from './schema'
 
 
@@ -53,13 +52,13 @@ const CreateGenre = () => {
         </Form.Field>
 
         <Form.Field>
-          <label>Categories</label>
-          <select multiple={true} {...register("categories")}>
-            {(categories || []).map((item) => (
-              <option key={item.id} value={item.id}>{item.title}</option>
-            ))}
-          </select >
-          <Message warning content={errors.categories?.message} />
+        {(categories || []).map((item) => (
+          <label>
+            <input key={item.id} type="checkbox" value={item.id}  {...register("categories")} />{' '}
+            {item.title}
+          </label>
+        ))}
+        <Message warning content={errors.categories?.message} />
         </Form.Field>
 
         <Message success header='Category saved' />
