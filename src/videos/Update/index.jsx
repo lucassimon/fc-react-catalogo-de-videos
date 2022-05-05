@@ -9,7 +9,7 @@ import apiClient from "../../http-client";
 import FormUpdate from './Form';
 
 
-const EditGenre = () => {
+const EditVideo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [item, setItem] = useState(null);
@@ -47,8 +47,9 @@ const EditGenre = () => {
     <div>
       <h2>Update Video</h2>
       {error && <Message header="Ocorreu um erro inesperado" data-testid="errorDetail" />}
+      {item && <FormUpdate item={item} />}
     </div>
   )
 }
 
-export default EditGenre
+export default EditVideo
