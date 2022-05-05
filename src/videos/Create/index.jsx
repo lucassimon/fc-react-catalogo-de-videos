@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,34 +19,15 @@ const CreateVideo = () => {
     resolver: yupResolver(schema)
   });
 
+  const navigate = useNavigate();
   const createVideo = async (data) => {
     setLoading(true);
 
-    console.log(data)
-
-    const formData = new FormData()
-
-    if (data.trailer_file.length > 0) {
-      formData.append("trailer_file", data.trailer_file[0])
-    }
-    if (data.video_file.length > 0) {
-      formData.append("video_file", data.video_file[0])
-    }
-    formData.append("title", data.title)
-    formData.append("description", data.description)
-    formData.append("year_launched", data.year_launched)
-    formData.append("duration", data.duration)
-    formData.append("rating", data.rating)
-    formData.append("categories", [data.categories])
-    formData.append("genres", [data.genres])
-
-    console.log(formData)
-
-    const config = { headers: {'content-type': 'multipart/form-data',},};
-
     try {
-      await apiClient.post("/v1/videos/", formData, config)
+      const response = await apiClient.post("/v1/videos/", data)
+
       setSuccess(true)
+      navigate(`/videos/${response.data.id}/upload`);
     } catch (error) {
       setError(true)
     }
@@ -105,67 +87,23 @@ const CreateVideo = () => {
         </Form.Field>
 
         <Form.Field>
-          <label>Categories</label>
-          <select {...register("categories")}>
-            {(categories || []).map((item) => (
-              <option key={item.id} value={item.id}>{item.title}</option>
-            ))}
-          </select >
-          <Message warning content={errors.categories?.message} />
-        </Form.Field>
-
-        {/* <Form.Field>
         {(categories || []).map((item) => (
-          <label>
-            <input key={item.id} type="checkbox" value={item.id}  {...register("categories")} />{' '}
+          <label key={item.id}>
+            <input type="checkbox" value={item.id}  {...register("categories")} />{' '}
             {item.title}
           </label>
         ))}
         <Message warning content={errors.categories?.message} />
-        </Form.Field> */}
-
-        <Form.Field>
-          <label>Genres</label>
-          <select {...register("genres")}>
-            {(genres || []).map((item) => (
-              <option key={item.id} value={item.id}>{item.title}</option>
-            ))}
-          </select >
-          <Message warning content={errors.genres?.message} />
         </Form.Field>
 
-        {/* <Form.Field>
+        <Form.Field>
         {(genres || []).map((item) => (
-          <label>
-            <input key={item.id} type="checkbox" value={item.id}  {...register("genres")} />{' '}
+          <label key={item.id}>
+            <input  type="checkbox" value={item.id}  {...register("genres")} />{' '}
             {item.title}
           </label>
         ))}
         <Message warning content={errors.genres?.message} />
-        </Form.Field> */}
-
-        <Form.Field>
-          <label>thumb_file</label>
-          <input {...register("thumb_file")} type="file" />
-          <Message warning content={errors.thumb_file?.message} />
-        </Form.Field>
-
-        <Form.Field>
-          <label>banner_file</label>
-          <input {...register("banner_file")} type="file" />
-          <Message warning content={errors.banner_file?.message} />
-        </Form.Field>
-
-        <Form.Field>
-          <label>Trailler</label>
-          <input {...register("trailer_file")} type="file" />
-          <Message warning content={errors.trailer_file?.message} />
-        </Form.Field>
-
-        <Form.Field>
-          <label>Video</label>
-          <input {...register("video_file")} type="file" />
-          <Message warning content={errors.video_file?.message} />
         </Form.Field>
 
         <Message success header='Category saved' />
