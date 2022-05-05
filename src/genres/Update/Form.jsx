@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Button, Message, Form, Checkbox } from 'semantic-ui-react'
+import { Button, Message, Form, } from 'semantic-ui-react'
 
 import apiClient from "../../http-client";
 
@@ -19,7 +19,6 @@ const FormUpdate = ({ item }) => {
   const {
     register,
     handleSubmit,
-    control,
     formState:{ errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -50,13 +49,6 @@ const FormUpdate = ({ item }) => {
     getCategories()
   }, []);
 
-  const [defaultCategory, setDefaultCategory] = useState(null);
-
-  React.useEffect(() => {
-
-    // setDefaultCategory(categories.find(element => element.value === data.category_id));
-
-  }, [categories]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} loading={loadingForm} error={errorForm} warning={!!errors} success={successForm}>
