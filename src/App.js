@@ -8,6 +8,7 @@ import Videos from "./videos";
 import Video from "./videos/Detail";
 import CreateVideo from "./videos/Create"
 import EditVideo from "./videos/Update"
+import UploadVideo from "./videos/Upload"
 
 import Categories from "./categories";
 import Category from "./categories/Detail";
@@ -56,6 +57,7 @@ const App = () => (
           <Route path="videos/create" element={<CreateVideo />} />
           <Route path="videos/:videoId" element={<Video />} />
           <Route path="videos/:videoId/edit" element={<EditVideo />} />
+          <Route path="videos/:videoId/Upload" element={<UploadVideo />} />
 
           <Route path="categories" element={<Categories />} />
           <Route path="categories/create" element={<CreateCategory />} />
